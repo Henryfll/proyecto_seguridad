@@ -15,8 +15,9 @@ import { CoreCommonModule } from '@core/common.module';
 
 
 import { DashboardService } from 'app/main/dashboard/dashboard.service';
+import { AnalyticsComponent } from './analytics/components/analytics.component';
+import { ChartsModule } from 'ng2-charts';
 
-import { AnalyticsComponent } from 'app/main/dashboard/analytics/analytics.component';
 
 const routes = [
   {
@@ -40,6 +41,7 @@ const routes = [
     PerfectScrollbarModule,
     CoreCommonModule,
     NgApexchartsModule,
+    ChartsModule
   ],
   providers: [DashboardService]
 })

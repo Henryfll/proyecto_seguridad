@@ -1,0 +1,125 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    
+    <section>
+
+      <div class="row match-height">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title" style="text-align: center;">Taller Automotriz "Los Rios"</h4>
+              <div class="row">
+
+                <div class="col-lg-2 col-12" >
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title">Score</h4>
+                    </div>
+                    <div class="card-body">
+                      <canvas width="100px"
+                        class="doughnut-chart-ex chartjs mx-auto"
+                        baseChart
+                        [datasets]="doughnutChart.datasets"
+                        [options]="doughnutChart.options"
+                        [chartType]="doughnutChart.chartType"
+                        [data]="porcentajes"
+                      >
+                      </canvas>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12 mb-1" style="margin-top: 50px;">
+                  <label>Sitio web:</label>
+                  <div class="input-group">
+                    <input id="busqueda" type="text" class="form-control"  [(ngModel)]="buscarUrl"
+                    placeholder="Ingrese aquí la url del sitio a buscar" aria-label="Amount" />
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary" (click)="analizarIp()"
+                      type="button" rippleEffect> <i data-feather="search"></i>Buscar</button>
+                    </div>
+                  </div>
+                  <input type="checkbox" /> Enviar por correo electrónico
+              </div>
+
+              </div>
+              <h2 *ngIf="mensaje=='Datos Encontrados'" class="text-success" style="text-align: center;"> {{mensaje}}</h2>
+              <h2 *ngIf="mensaje=='Error: No se encontraron datos'" class="text-danger" style="text-align: center;"> {{mensaje}}</h2>
+              
+              <div class="row" *ngIf="data">
+                <div class="col-lg-6 col-12" >
+                  <div class="card">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="mt-2">
+                          <h5 class="mb-75">Titulo:</h5>
+                          <p class="card-text">{{data.data.attributes.title}}</p>
+                        </div>
+                        <div class="mt-2">
+                          <h5 class="mb-75">Descripción:</h5>
+                          <p class="card-text">{{data.data.attributes.html_meta.description}}
+                            <button class="btn btn-outline-info" (click)="vermasDetalles()"
+                            type="button" rippleEffect> <i data-feather="eye"></i>{{verMas==false ? 'Ver mas...':'Ver menos'}}</button>
+                          </p>
+                        </div>
+                        <div *ngIf="verMas" class="mt-2">
+                          <h5 class="mb-75">Últimos análisis:</h5>
+                          <li class="card-text"> Malisiosos: {{data.data.attributes.last_analysis_stats.malicious}}</li>
+                          <li class="card-text"> Sospechosos: {{data.data.attributes.last_analysis_stats.suspicious}}</li>
+                          <li class="card-text"> No detectados: {{data.data.attributes.last_analysis_stats.undetected}}</li>
+                          <li class="card-text"> Inofensivo: {{data.data.attributes.last_analysis_stats.harmless}}</li>
+                          <li class="card-text"> Timeout: {{data.data.attributes.last_analysis_stats.timeout}}</li>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section *ngIf="analysisResults">
+      <div class="row match-height">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-body">
+                      <h4 class="card-title">Análisis de proveedores de seguridad</h4>
+                      <div class="row">
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Proveedor</th>
+                                  <th>Método de análisis</th>
+                                  <th>Resultado</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let key of objectKeys(analysisResults);let i = index">
+                                  <td>{{i+1}}</td>
+                                  <td>{{ analysisResults[key].engine_name }}</td>
+                                  <td>{{ analysisResults[key].method }}</td>
+                                  <td>
+                                    <span *ngIf="analysisResults[key].result=='clean'" class="badge badge-pill badge-light-success mr-1">{{ analysisResults[key].result }}</span>
+                                    <span *ngIf="analysisResults[key].result=='unrated'" class="badge badge-pill badge-light-warning mr-1">{{ analysisResults[key].result }}</span>
+                                    <span *ngIf="analysisResults[key].result=='suspicious'" class="badge badge-pill badge-light-info mr-1">{{ analysisResults[key].result }}</span>
+                
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  </div>
+</div>
