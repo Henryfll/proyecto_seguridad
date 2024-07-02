@@ -13,10 +13,10 @@
                 <div class="col-lg-2 col-12" >
                   <div class="card">
                     <div class="card-header">
-                      <h4 class="card-title">Score</h4>
+                      <h4 class="card-title">Resultados</h4>
                     </div>
                     <div class="card-body">
-                      <canvas width="100px"
+                      <canvas width="200px"
                         class="doughnut-chart-ex chartjs mx-auto"
                         baseChart
                         [datasets]="doughnutChart.datasets"
@@ -44,7 +44,7 @@
               </div>
 
               </div>
-              <h2 *ngIf="mensaje=='Datos Encontrados'" class="text-success" style="text-align: center;"> {{mensaje}}</h2>
+              <h2 *ngIf="mensaje=='Datos Encontrados'" style="text-align: center;"> {{mensaje}}</h2>
               <h2 *ngIf="mensaje=='Error: No se encontraron datos'" class="text-danger" style="text-align: center;"> {{mensaje}}</h2>
               
               <div class="row" *ngIf="data">

@@ -23,4 +23,5 @@ export class AnalisisService {
     let url_ws=`${this.url_API}/urls/${url}`;
     return this._http.get<any>(url_ws, { headers });
   }
+
 }

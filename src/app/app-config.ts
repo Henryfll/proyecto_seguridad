@@ -18,7 +18,7 @@ export const coreConfig: CoreConfig = {
   app: {
     appName     : 'SEGURIOS',                                        // App Name
     appTitle    : 'SEGURIOS', // App Title
-    appLogoImage: 'assets/images/logo/logo.svg',                  // App Logo
+    appLogoImage: 'assets/images/logo/logo_segurios.jpeg',                  // App Logo
     appLanguage : 'en',                                           // App Default Language (en, fr, de, pt etc..)
   },
   layout: {
@@ -44,7 +44,7 @@ export const coreConfig: CoreConfig = {
       customBackgroundColor: false,           // Boolean: true, false
       backgroundColor      : ''               // BS color i.e bg-primary, bg-success
     },
-    enableLocalStorage: true,
+    enableLocalStorage: false,
     customizer  : true,                       // Boolean: true, false (Enable theme customizer)
     scrollTop   : true,                       // Boolean: true, false (Enable scroll to top button)
     buyNow      : false                        // Boolean: true, false (Set false in real project, For demo purpose only)
